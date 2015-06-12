@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ x$1 = x"--help" ]; then
+echo "HELP"
+exit;
+fi
+
+if [ ! -z $1 ]; then
+  SIZE=$1
+else
+  SIZE=4
+fi
+
+if [ ! -z $TABWIDTH ]; then
+  SIZE=$TABWIDTH
+fi
+
+grep --exclude-dir=.git* -rl "\t" . | awk '{print "expand -t '$SIZE' "$1" > tmp && mv tmp "$1}'
+grep --exclude-dir=.git* -rl ' $' . | awk '{print "sed -i '"''"' '"'"'s/ *$//'"'"' "$1}'

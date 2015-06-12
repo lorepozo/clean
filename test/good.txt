@@ -1,0 +1,2 @@
+This file is good.
+It has no tab characters or trailing spaces.
